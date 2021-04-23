@@ -17,6 +17,10 @@
 
 -->
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/a325744e35ae6c5ec9b5/maintainability)](https://codeclimate.com/github/Riverside-Healthcare/Sqlize-Crystal-Reports/maintainability)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/cc6a57cbb8f74e5caa103abc1316e904)](https://www.codacy.com/gh/Riverside-Healthcare/Sqlize-Crystal-Reports/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Riverside-Healthcare/Sqlize-Crystal-Reports&amp;utm_campaign=Badge_Grade)
+[![CodeQL](https://github.com/Riverside-Healthcare/Sqlize-Crystal-Reports/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Riverside-Healthcare/Sqlize-Crystal-Reports/actions/workflows/codeql-analysis.yml)
+
 # Sqlize Crystal Reports
 
 ## About
