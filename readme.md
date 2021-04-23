@@ -16,12 +16,14 @@
   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 -->
+
 # Sqlize Crystal Reports
 
 ## About
 
 **Sqlize Crystal Reports** runs [Aidan Ryan's](https://github.com/ajryan) [RptToXml](https://github.com/ajryan/RptToXml) converter to convert a directory of SAP Crystal Reports into XLM files, and then makes a strong attempt at parsing that XML out into a *somewhat* readable and *potentially* runnable t-sql statement. The results are saved into a database table along with the reports:
-* FileName 
+
+* FileName
 * Title
 * Description
 * Query
@@ -53,19 +55,21 @@ Sqlize Crystal Reports was created by the Riverside Healthcare Analytics team -
 ### First, install SAP's Crystal Reports, Developer for Visual Studio, SP 28
 
 Here are a few links to try -
+
 * [Direct link to download https://www.sap.com/cmp/td/sap-crystal-reports-visual-studio-trial.html](https://www.sap.com/cmp/td/sap-crystal-reports-visual-studio-trial.html)
 * [How To Page https://wiki.scn.sap.com/wiki/display/BOBJ/Crystal+Reports%2C+Developer+for+Visual+Studio+Downloads](https://wiki.scn.sap.com/wiki/display/BOBJ/Crystal+Reports%2C+Developer+for+Visual+Studio+Downloads)
 * [Wiki Home https://blogs.sap.com/2016/12/06/sap-crystal-reports-developer-version-for-microsoft-visual-studio-updates-runtime-downloads/](https://blogs.sap.com/2016/12/06/sap-crystal-reports-developer-version-for-microsoft-visual-studio-updates-runtime-downloads/)
 
-
 We are on a 64bit Windows Machine and built the executable with the 64 drivers. If you are on a 32bit machine you might as well rebuild from the source.
 Install:
+
 * SAP Crystal Reports for Visual Studio (SP28) runtime engine for .NET framework MSI (64-bit)
 * SAP Crystal Reports for Visual Studio (SP28) runtime (64-bit)
- 
+
  > Maybe the 2nd install is redundant?
 
 ### Next, install a few Python packages
+
 ```sh
 pip install pyodbc lxml sqlparse
 ```
@@ -73,6 +77,7 @@ pip install pyodbc lxml sqlparse
 ### Create Database
 
 There are only four db columns -
+
 ```sql
 USE [CrystalSQL]
 GO
@@ -84,10 +89,10 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Query](
-	[ReportName] [nvarchar](max) NULL,
-	[Query] TEXT NULL,
-	[Title] [nvarchar](max) NULL,
-	[Description] [nvarchar](max) NULL
+  [ReportName] [nvarchar](max) NULL,
+  [Query] TEXT NULL,
+  [Title] [nvarchar](max) NULL,
+  [Description] [nvarchar](max) NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
@@ -102,7 +107,7 @@ database = 'DRIVER={ODBC Driver 17 for SQL Server};SERVER=server_name;DATABASE=d
 rpt_src = '\\\\network\\c$\\path\\to\\.rpt\\files\\'
 ```
 
-### Run!
+### Run
 
 ```sh
 python main.py

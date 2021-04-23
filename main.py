@@ -91,7 +91,7 @@ for f in Path(xml_fldr).glob("*.xml"):
 
 conn.close()
 
-# t = report(xml_fldr + 'name.xml')
+# t = report(xml_fldr + '24_Hour_H&P_Compliance.xml')
 # print(t.title())
 # print(t.description())
 # print(len(t.sql()))
