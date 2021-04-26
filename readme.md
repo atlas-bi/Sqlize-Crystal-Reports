@@ -27,10 +27,10 @@
 
 **Sqlize Crystal Reports** runs [Aidan Ryan's](https://github.com/ajryan) [RptToXml](https://github.com/ajryan/RptToXml) converter to convert a directory of SAP Crystal Reports into XLM files, and then makes a strong attempt at parsing that XML out into a *somewhat* readable and *potentially* runnable t-sql statement. The results are saved into a database table along with the reports:
 
-* FileName
-* Title
-* Description
-* Query
+  * FileName
+  * Title
+  * Description
+  * Query
 
 If mutliple queries are found in the report, there will be a db entry for each query.
 
@@ -44,15 +44,15 @@ Special thanks to [Aidan Ryan](https://github.com/ajryan) for creating the [RptT
 
 Sqlize Crystal Reports was created by the Riverside Healthcare Analytics team -
 
-* Paula Courville
-* [Darrel Drake](https://www.linkedin.com/in/darrel-drake-57562529)
-* [Dee Anna Hillebrand](https://github.com/DHillebrand2016)
-* [Scott Manley](https://github.com/Scott-Manley)
-* [Madeline Matz](mailto:mmatz@RHC.net)
-* [Christopher Pickering](https://github.com/christopherpickering)
-* [Dan Ryan](https://github.com/danryan1011)
-* [Richard Schissler](https://github.com/schiss152)
-* [Eric Shultz](https://github.com/eshultz)
+  * Paula Courville
+  * [Darrel Drake](https://www.linkedin.com/in/darrel-drake-57562529)
+  * [Dee Anna Hillebrand](https://github.com/DHillebrand2016)
+  * [Scott Manley](https://github.com/Scott-Manley)
+  * [Madeline Matz](mailto:mmatz@RHC.net)
+  * [Christopher Pickering](https://github.com/christopherpickering)
+  * [Dan Ryan](https://github.com/danryan1011)
+  * [Richard Schissler](https://github.com/schiss152)
+  * [Eric Shultz](https://github.com/eshultz)
 
 ## How To Run
 
@@ -67,8 +67,8 @@ Here are a few links to try -
 We are on a 64bit Windows Machine and built the executable with the 64 drivers. If you are on a 32bit machine you might as well rebuild from the source.
 Install:
 
-* SAP Crystal Reports for Visual Studio (SP28) runtime engine for .NET framework MSI (64-bit)
-* SAP Crystal Reports for Visual Studio (SP28) runtime (64-bit)
+  * SAP Crystal Reports for Visual Studio (SP28) runtime engine for .NET framework MSI (64-bit)
+  * SAP Crystal Reports for Visual Studio (SP28) runtime (64-bit)
 
  > Maybe the 2nd install is redundant?
 
