@@ -1,0 +1,59 @@
+[tool.poetry]
+name = "Sqlize Crystal Reports"
+version = "0.0.0"
+description = "Enthusiastic attempt at converting Crystal reports to SQL"
+authors = ["Christopher Pickering"]
+license = "GPL-3.0-or-later"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+lxml = "^4.6.2"
+sqlparse = "^0.4.1"
+pyodbc = "^4.0.30"
+
+
+[tool.poetry.dev-dependencies]
+pre-commit = "^2.9.3"
+
+[tool.black]
+max_line_length = 99
+exclude = '''
+    /(
+        \.git
+      | \.tox
+      | \.venv
+
+      # The following are specific to Black, you probably don't want those.
+      | blib2to3
+      | tests/data
+    )/
+    '''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+line_length = 99
+quiet = true
+sections="FUTURE,STDLIB,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pylint.master]
+ignore = [".git","__pycache__",".tox",".venv","venv","public_publish"]
+
+[tool.pylint.messages_control]
+disable = "C0103, C0330, C0326, E0401, C0413, C0411, R0902, C0415, C0302, R0912, R0915, R0914, R0401, R0801, R0913, R0903, R0911, W0703, W1510"
+
+[tool.pylint.format]
+max-line-length = 99
+max-module-lines=1000
+
+[tool.pylint.basic]
+good-names = "i,j,k,ex,Run,x,id,e,me,l,_,f"
+include-naming-hint="no"
