@@ -9,35 +9,32 @@ import pyodbc
 import settings
 from crystal_parser import Report
 
-rpt_fldr = str(Path(__file__).parent.absolute()) + "\\crystal_rpt\\"
-xml_fldr = str(Path(__file__).parent.absolute()) + "\\crystal_xml\\"
+rpt_fldr = Path(__file__).parent / "crystal_rpt"
+xml_fldr = Path(__file__).parent / "crystal_xml"
 
 # remove report folder
 shutil.rmtree(rpt_fldr, ignore_errors=True)
-Path(rpt_fldr).mkdir(exist_ok=True)
+rpt_fldr.mkdir(exist_ok=True)
 
 # copy in reports
 for report in Path(settings.rpt_src).glob("*.rpt"):
-    shutil.copyfile(settings.rpt_src + report.name, rpt_fldr + report.name)
+    shutil.copyfile(settings.rpt_src + report.name, str(rpt_fldr / report.name))
 
 # remove xml folder
 shutil.rmtree(xml_fldr, ignore_errors=True)
 Path(xml_fldr).mkdir(exist_ok=True)
 
+print("Downloaded ", len(list(rpt_fldr.rglob(f"*"))), "files.")
+
 # convert all reports to xml
-for report in Path(rpt_fldr).glob("*.rpt"):
+for report in rpt_fldr.glob("*.rpt"):
     # if there are a ton of reports using threading might speed things up!
     try:
         command = subprocess.run(
             [
-                str(
-                    PureWindowsPath(
-                        str(Path(__file__).parent.absolute())
-                        + "\\RptToXml\\RptToXml.exe"
-                    )
-                ),
-                str(PureWindowsPath(rpt_fldr + report.name)),
-                str(PureWindowsPath(xml_fldr + report.stem)) + ".xml",
+                str((Path(__file__).parent / "RptToXml" / "RptToXml.exe").absolute()),
+                str((rpt_fldr / report.name).absolute()),
+                str((xml_fldr / (report.stem + ".xml")).absolute()),
             ],
             capture_output=True,
         )
@@ -48,16 +45,19 @@ for report in Path(rpt_fldr).glob("*.rpt"):
         print(report.name, str(e))
         continue
 
+print("Converted ", len(list(xml_fldr.rglob(f"*"))), "files.")
 
 conn = pyodbc.connect(settings.database, autocommit=True)
 cursor = conn.cursor()
 
 cursor.execute("DELETE FROM [CrystalSQL].[dbo].[Query] where 1=1;")
 
-for xml in Path(xml_fldr).glob("*.xml"):
+count = 0
+query_count = 0
+for xml in xml_fldr.glob("*.xml"):
 
     try:
-        report = Report(xml_fldr + xml.name)
+        report = Report(str((xml_fldr / xml.name).absolute()))
         title = report.title()
         description = report.description()
 
@@ -73,8 +73,12 @@ for xml in Path(xml_fldr).glob("*.xml"):
                 title,
                 description,
             )
+            query_count = query_count + 1
+        count = count + 1
 
     except Exception as e:
         print(xml.name, str(e))
+
+print(f"Loaded {query_count} from {count} reports.")
 
 conn.close()
