@@ -26,7 +26,7 @@ public:
     - git config --global user.name "$GITLAB_USER_NAME"
     - shopt -s dotglob # include dotfiles in mv
   script:
-    - cd public_publish && python build_public.py
+    - python build_public.py
     - cd $CI_PROJECT_DIR
     - git init
     - git remote add origin https://oauth2:${CI_PUSH_TOKEN}@$CI_SERVER_HOST/$CI_PROJECT_PATH.git || git remote set-url origin https://oauth2:${CI_PUSH_TOKEN}@$CI_SERVER_HOST/$CI_PROJECT_PATH.git

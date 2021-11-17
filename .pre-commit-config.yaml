@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.4.0
+    rev: v4.0.1
     hooks:
       - id: pretty-format-json
       - id: check-json
@@ -8,12 +8,12 @@ repos:
       - id: check-yaml
       - id: end-of-file-fixer
   - repo: https://github.com/timothycrosley/isort
-    rev: 4.3.21
+    rev: 5.10.1
     hooks:
     - id: isort
       additional_dependencies: [toml]
   - repo: https://github.com/ambv/black
-    rev: stable
+    rev: 21.11b0
     hooks:
     - id: black
       language_version: python3.9

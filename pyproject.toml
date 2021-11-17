@@ -48,7 +48,7 @@ build-backend = "poetry.core.masonry.api"
 ignore = [".git","__pycache__",".tox",".venv","venv","public_publish"]
 
 [tool.pylint.messages_control]
-disable = "C0103, C0330, C0326, E0401, C0413, C0411, R0902, C0415, C0302, R0912, R0915, R0914, R0401, R0801, R0913, R0903, R0911, W0703, W1510"
+disable = "C0103, C0330, C0326, E0401, C0413, C0411, R0902, C0415, C0302, R0912, R0915, R0914, R0401, R0801, R0913, R0903, R0911, W0703, W1510, C0209"
 
 [tool.pylint.format]
 max-line-length = 99

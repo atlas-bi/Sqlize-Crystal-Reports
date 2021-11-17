@@ -1,22 +1,3 @@
-<!--
-  Sqlize Crystal Reports
-  Copyright (C) 2020  Riverside Healthcare, Kankakee, IL
-
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
--->
-
 [![Maintainability](https://api.codeclimate.com/v1/badges/a325744e35ae6c5ec9b5/maintainability)](https://codeclimate.com/github/Riverside-Healthcare/Sqlize-Crystal-Reports/maintainability)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/cc6a57cbb8f74e5caa103abc1316e904)](https://www.codacy.com/gh/Riverside-Healthcare/Sqlize-Crystal-Reports/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Riverside-Healthcare/Sqlize-Crystal-Reports&amp;utm_campaign=Badge_Grade)
 [![CodeQL](https://github.com/Riverside-Healthcare/Sqlize-Crystal-Reports/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Riverside-Healthcare/Sqlize-Crystal-Reports/actions/workflows/codeql-analysis.yml)
