@@ -79,6 +79,6 @@ for xml in xml_fldr.glob("*.xml"):
     except Exception as e:
         print(xml.name, str(e))
 
-print(f"Loaded {query_count} from {count} reports.")
+print(f"Loaded {query_count} queries from {count} reports.")
 
 conn.close()
