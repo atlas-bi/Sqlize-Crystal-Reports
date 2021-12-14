@@ -61,7 +61,7 @@ pip install pyodbc lxml sqlparse
 
 ### Create Database
 
-There are only four db columns -
+There are two tables to create -
 
 ```sql
 USE [CrystalSQL]
@@ -81,6 +81,15 @@ CREATE TABLE [dbo].[Query](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
+CREATE TABLE [dbo].[Reports](
+  [ReportName] [nvarchar](max) NULL,
+  [ReportDescription] [nvarchar](max) NULL,
+  [FolderId] [nvarchar](max) NULL,
+  [Cuid] [nvarchar](max) NULL,
+  [ReportId] [nvarchar](max) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
 ```
 
 Don't forget to add a user account that can delete and insert.
@@ -90,6 +99,11 @@ Don't forget to add a user account that can delete and insert.
 ```py
 database = 'DRIVER={ODBC Driver 17 for SQL Server};SERVER=server_name;DATABASE=database_name;UID=username;PWD=password'
 rpt_src = '\\\\network\\c$\\path\\to\\.rpt\\files\\'
+
+fetch_report_data = True # true to enable report data fetch from SAP API
+sap_api_username = "BOE_REPORT"
+sap_api_password = "password_with_special_xml_chars_encoded"
+sap_api_url = "http://server.example.net"
 ```
 
 ### Run
