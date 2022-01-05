@@ -56,7 +56,7 @@ Install:
 ### Next, install a few Python packages
 
 ```sh
-pip install pyodbc lxml sqlparse
+pip install pyodbc lxml sqlparse requests xmltodict
 ```
 
 ### Create Database
