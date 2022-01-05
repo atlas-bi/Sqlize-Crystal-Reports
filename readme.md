@@ -61,7 +61,7 @@ pip install pyodbc lxml sqlparse
 
 ### Create Database
 
-There are two tables to create -
+There are a few tables to create -
 
 ```sql
 USE [CrystalSQL]
@@ -73,23 +73,48 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[Query](
+
+CREATE TABLE [dbo].[Reports](
+  [Name] [nvarchar](max) NULL,
+  [Reference] [nvarchar](max) NULL,
+  [ReportId] [nvarchar](max) NULL,
+  [DocumentId] [nvarchar](max) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[Templates](
   [ReportName] [nvarchar](max) NULL,
-  [Query] TEXT NULL,
+  [Query] [text] NULL,
   [Title] [nvarchar](max) NULL,
   [Description] [nvarchar](max) NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
-CREATE TABLE [dbo].[Reports](
-  [ReportName] [nvarchar](max) NULL,
-  [ReportDescription] [nvarchar](max) NULL,
-  [FolderId] [nvarchar](max) NULL,
-  [Cuid] [nvarchar](max) NULL,
-  [ReportId] [nvarchar](max) NULL
+CREATE TABLE [dbo].[Attachments](
+  [HRX] [nvarchar](max) NULL,
+  [PDF] [nvarchar](max) NULL,
+  [CreationDate] [datetime] NULL,
+  [Name] [nvarchar](max) NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
+CREATE TABLE [dbo].[Documents](
+  [Name] [nvarchar](max) NULL,
+  [Description] [nvarchar](max) NULL,
+  [FolderId] [nvarchar](max) NULL,
+  [Cuid] [nvarchar](max) NULL,
+  [DocumentId] [nvarchar](max) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[Objects](
+  [Title] [nvarchar](max) NULL,
+  [Cuid] [nvarchar](max) NULL,
+  [StatusType] [nvarchar](max) NULL,
+  [Type] [nvarchar](max) NULL,
+  [LastRun] [nvarchar](max) NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
 ```
 
 Don't forget to add a user account that can delete and insert.
@@ -98,16 +123,24 @@ Don't forget to add a user account that can delete and insert.
 
 ```py
 database = 'DRIVER={ODBC Driver 17 for SQL Server};SERVER=server_name;DATABASE=database_name;UID=username;PWD=password'
+
+# get report sql settings
 rpt_src = '\\\\network\\c$\\path\\to\\.rpt\\files\\'
 
-fetch_report_data = True # true to enable report data fetch from SAP API
+# get report data settings
 sap_api_username = "BOE_REPORT"
-sap_api_password = "password_with_special_xml_chars_encoded"
+sap_api_password = "password"
 sap_api_url = "http://server.example.net"
+
+# get report files settings
+crystal_boe_output_drive = "\\\\server\\Output"
 ```
 
-### Run
+### Running
 
+There are three parts to this ETL that can be run separately.
 ```sh
-python main.py
+python get_report_data.py # loads BOE report links
+python get_sql.py # gets report sql code
+python get_report_files.py # gets report output links. passed to Atlas as run links
 ```

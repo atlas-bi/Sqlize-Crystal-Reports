@@ -5,7 +5,7 @@ import re
 import sqlparse
 from lxml import etree
 
-from sqlize import Sqlize
+from .sqlize import Sqlize
 
 
 class Report:
