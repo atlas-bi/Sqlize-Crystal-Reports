@@ -1,5 +1,6 @@
 """Sqlize Crystal Reports."""
 
+import os
 import shutil
 import subprocess
 from pathlib import Path
@@ -10,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 RTPSRC = os.environ.get("RPTSRC", "\\\\Drive\\Input")
-STALDATABASE = os.environ.get(
+CRYSTALDATABASE = os.environ.get(
     "CRYSTALDATABASE",
     "DRIVER={ODBC Driver 17 for SQL Server};SERVER=sqlServer;DATABASE=CrystalSQL;UID=joe;PWD=12345",
 )
@@ -33,7 +34,7 @@ for report in Path(RTPSRC).glob("*.rpt"):
 shutil.rmtree(xml_fldr, ignore_errors=True)
 Path(xml_fldr).mkdir(exist_ok=True)
 
-print("Downloaded ", len(list(rpt_fldr.rglob("*"))), "files.")
+print("Downloaded ", len(list(rpt_fldr.rglob("*"))), "files.")  # noqa: T201
 
 # convert all reports to xml
 for report in rpt_fldr.glob("*.rpt"):
@@ -48,13 +49,13 @@ for report in rpt_fldr.glob("*.rpt"):
             capture_output=True,
         )
         if command.stderr:
-            print(report.name, str(command.stderr))
+            print(report.name, str(command.stderr))  # noqa: T201
 
     except Exception as e:
-        print(report.name, str(e))
+        print(report.name, str(e))  # noqa: T201
         continue
 
-print("Converted ", len(list(xml_fldr.rglob("*"))), "files.")
+print("Converted ", len(list(xml_fldr.rglob("*"))), "files.")  # noqa: T201
 
 conn = pyodbc.connect(CRYSTALDATABASE, autocommit=True)
 cursor = conn.cursor()
@@ -86,8 +87,8 @@ for xml in xml_fldr.glob("*.xml"):
         count = count + 1
 
     except Exception as e:
-        print(xml.name, str(e))
+        print(xml.name, str(e))  # noqa: T201
 
-print(f"Loaded {query_count} queries from {count} reports.")
+print(f"Loaded {query_count} queries from {count} reports.")  # noqa: T201
 
 conn.close()

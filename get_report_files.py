@@ -41,7 +41,7 @@ def _walk(top):
         # to earlier import-*.
         scandir_it = os.scandir(top)
     except OSError as error:
-        print(error)
+        print(error)  # noqa: T201
 
         return
 
@@ -53,7 +53,7 @@ def _walk(top):
                 except StopIteration:
                     break
             except OSError as error:
-                print(error)
+                print(error)  # noqa: T201
 
                 return
 
@@ -107,8 +107,8 @@ for my_path in _walk(CRYSTALBOEOUTPUT):
                 ),
             )
             file_count += 1
-            # print(file[0].split("-")[0], my_path[0] + "\\" + file[0], datetime.datetime.fromtimestamp(file[1]) )
+            # print(file[0].split("-")[0], my_path[0] + "\\" + file[0], datetime.datetime.fromtimestamp(file[1]) ) # noqa: T201
 
-print(f"Found {file_count} files.")
+print(f"Found {file_count} files.")  # noqa: T201
 
 conn.close()
