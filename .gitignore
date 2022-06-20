@@ -1,7 +1,8 @@
 crystal_rpt
 crystal_xml
 venv
-
+node_modules/
+.env
 # Created by https://www.toptal.com/developers/gitignore/api/windows,python,dotnetcore
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,python,dotnetcore
 

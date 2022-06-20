@@ -5,10 +5,19 @@ import collections
 import pyodbc
 import requests
 import xmltodict
+from dotenv import load_dotenv
 
-import settings
+load_dotenv()
 
-conn = pyodbc.connect(settings.database, autocommit=True)
+SAPAPIURL = os.environ.get("SAPAPIURL", "http://my_boe.example.com")
+SAPAPIUSERNAME = os.environ.get("SAPAPIUSERNAME", "BOE_REPORT")
+SAPAPIPASSWORD = os.environ.get("SAPAPIPASSWORD", "12345")
+CRYSTALDATABASE = os.environ.get(
+    "CRYSTALDATABASE",
+    "DRIVER={ODBC Driver 17 for SQL Server};SERVER=sqlServer;DATABASE=CrystalSQL;UID=joe;PWD=12345",
+)
+
+conn = pyodbc.connect(CRYSTALDATABASE, autocommit=True)
 cursor = conn.cursor()
 
 
@@ -20,10 +29,10 @@ cursor = conn.cursor()
 
 
 login_page = requests.post(
-    f"{settings.sap_api_url}:6405/biprws/logon/long",
+    f"{SAPAPIURL}:6405/biprws/logon/long",
     json={
-        "userName": settings.sap_api_username,
-        "password": settings.sap_api_password,
+        "userName": SAPAPIUSERNAME,
+        "password": SAPAPIPASSWORD,
         "auth": "secEnterprise",
     },
     headers={"Content-Type": "application/json"},
@@ -47,7 +56,7 @@ while size == batch_size:
 
     # get batch of reports
     batch = requests.get(
-        f"{settings.sap_api_url}:6405/biprws/raylight/v1/documents?offset={offset}&limit={batch_size}",
+        f"{SAPAPIURL}:6405/biprws/raylight/v1/documents?offset={offset}&limit={batch_size}",
         headers=headers,
     )
 
@@ -85,7 +94,7 @@ for doc in doc_ids:
 
     # get batch of reports
     batch = requests.get(
-        f"{settings.sap_api_url}:6405/biprws/raylight/v1/documents/{doc_id}/reports",
+        f"{SAPAPIURL}:6405/biprws/raylight/v1/documents/{doc_id}/reports",
         headers=headers,
     )
 
@@ -137,30 +146,31 @@ while size == batch_size:
 
     # get batch of reports
     batch = requests.get(
-        f"{settings.sap_api_url}:6405/biprws/bionbi/content/list?page={iteration}&pageSize={batch_size}",
+        f"{SAPAPIURL}:6405/biprws/bionbi/content/list?page={iteration}&pageSize={batch_size}",
         headers=headers,
     )
 
-    docs = xmltodict.parse(batch.text)["feed"]["entry"]
+    if "entry" in xmltodict.parse(batch.text)["feed"]:
+        docs = xmltodict.parse(batch.text)["feed"]["entry"]
 
-    size = len(docs)
+        size = len(docs)
 
-    for doc in docs:
-        # skip non dict
-        if type(doc) != collections.OrderedDict:
-            continue
-        doc = doc["content"]["attrs"]
-        # print(doc)
-        cursor.execute(
-            "INSERT INTO [CrystalSQL].[dbo].[Objects] (Title,Cuid,StatusType,Type, LastRun) VALUES (?, ?, ?, ?, ?);",
-            (
-                doc["attr"][3].get("#text"),
-                doc["attr"][0].get("#text"),
-                doc["attr"][1].get("#text"),
-                doc["attr"][4].get("#text"),
-                doc["attr"][2].get("#text"),
-            ),
-        )
+        for doc in docs:
+            # skip non dict
+            if type(doc) != collections.OrderedDict:
+                continue
+            doc = doc["content"]["attrs"]
+            # print(doc)
+            cursor.execute(
+                "INSERT INTO [CrystalSQL].[dbo].[Objects] (Title,Cuid,StatusType,Type, LastRun) VALUES (?, ?, ?, ?, ?);",
+                (
+                    doc["attr"][3].get("#text"),
+                    doc["attr"][0].get("#text"),
+                    doc["attr"][1].get("#text"),
+                    doc["attr"][4].get("#text"),
+                    doc["attr"][2].get("#text"),
+                ),
+            )
     iteration += 1
 
 doc_count = ((iteration - 1) * batch_size) + size
@@ -168,7 +178,7 @@ print(f"Found {doc_count} objects.")
 
 # logoff or you'll run out of sessions lol
 try:
-    requests.post(f"{settings.sap_api_url}:6405/biprws/logoff", headers=headers)
+    requests.post(f"{SAPAPIURL}:6405/biprws/logoff", headers=headers)
 except BaseException as e:
     print(str(e))
 

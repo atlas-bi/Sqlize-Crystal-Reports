@@ -5,8 +5,17 @@ import subprocess
 from pathlib import Path
 
 import pyodbc
+from dotenv import load_dotenv
 
-import settings
+load_dotenv()
+
+RTPSRC = os.environ.get("RPTSRC", "\\\\Drive\\Input")
+STALDATABASE = os.environ.get(
+    "CRYSTALDATABASE",
+    "DRIVER={ODBC Driver 17 for SQL Server};SERVER=sqlServer;DATABASE=CrystalSQL;UID=joe;PWD=12345",
+)
+
+
 from scripts.crystal_parser import Report
 
 rpt_fldr = Path(__file__).parent / "crystal_rpt"
@@ -17,8 +26,8 @@ shutil.rmtree(rpt_fldr, ignore_errors=True)
 rpt_fldr.mkdir(exist_ok=True)
 
 # copy in reports
-for report in Path(settings.rpt_src).glob("*.rpt"):
-    shutil.copyfile(settings.rpt_src + report.name, str(rpt_fldr / report.name))
+for report in Path(RTPSRC).glob("*.rpt"):
+    shutil.copyfile(RTPSRC + report.name, str(rpt_fldr / report.name))
 
 # remove xml folder
 shutil.rmtree(xml_fldr, ignore_errors=True)
@@ -47,7 +56,7 @@ for report in rpt_fldr.glob("*.rpt"):
 
 print("Converted ", len(list(xml_fldr.rglob("*"))), "files.")
 
-conn = pyodbc.connect(settings.database, autocommit=True)
+conn = pyodbc.connect(CRYSTALDATABASE, autocommit=True)
 cursor = conn.cursor()
 
 cursor.execute("DELETE FROM [CrystalSQL].[dbo].[Templates] where 1=1;")
