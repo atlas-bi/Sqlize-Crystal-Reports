@@ -1,12 +1,20 @@
-[![Maintainability](https://api.codeclimate.com/v1/badges/a325744e35ae6c5ec9b5/maintainability)](https://codeclimate.com/github/Riverside-Healthcare/Sqlize-Crystal-Reports/maintainability)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/cc6a57cbb8f74e5caa103abc1316e904)](https://www.codacy.com/gh/Riverside-Healthcare/Sqlize-Crystal-Reports/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Riverside-Healthcare/Sqlize-Crystal-Reports&amp;utm_campaign=Badge_Grade)
-[![CodeQL](https://github.com/Riverside-Healthcare/Sqlize-Crystal-Reports/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Riverside-Healthcare/Sqlize-Crystal-Reports/actions/workflows/codeql-analysis.yml)
+<h1 align="center">Sqlize Crystal Reports</h1>
+<h4 align="center">Atlas BI Library ETL | Crystal Reports Supplimentary ETL</h4>
+<p align="center">
+ <a href="https://www.atlas.bi" target="_blank">Website</a> • <a href="https://demo.atlas.bi" target="_blank">Demo</a> • <a href="https://www.atlas.bi/docs/bi-library/" target="_blank">Documentation</a> • <a href="https://discord.gg/hdz2cpygQD" target="_blank">Chat</a>
+</p>
+<p align="center">
+<a href="https://www.codacy.com/gh/Riverside-Healthcare/Tableau-Metadata-Exporter/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Riverside-Healthcare/Tableau-Metadata-Exporter&amp;utm_campaign=Badge_Grade"><img alt="codacy" src="https://app.codacy.com/project/badge/Grade/cc6a57cbb8f74e5caa103abc1316e904"></a>
+ <a href="https://sonarcloud.io/project/overview?id=atlas-bi_Sqlize-Crystal-Reports"><img alt="maintainability" src="https://sonarcloud.io/api/project_badges/measure?project=atlas-bi_Sqlize-Crystal-Reports&metric=sqale_rating"></a>
+ <a href="https://discord.gg/hdz2cpygQD"><img alt="discord chat" src="https://badgen.net/discord/online-members/hdz2cpygQD/" /></a>
+ <a href="https://github.com/atlas-bi/Sqlize-Crystal-Reports/releases"><img alt="latest release" src="https://badgen.net/github/release/atlas-bi/Sqlize-Crystal-Reports" /></a>
 
-# Sqlize Crystal Reports
+<p align="center">Make a wild swing at converting Crystal Reports into SQL and extracting useful metadata.
+ </p>
 
-## About
-
+## 🔧 How Does it Work?
 **Sqlize Crystal Reports** runs [Aidan Ryan's](https://github.com/ajryan) [RptToXml](https://github.com/ajryan/RptToXml) converter to convert a directory of SAP Crystal Reports into XLM files, and then makes a strong attempt at parsing that XML out into a *somewhat* readable and *potentially* runnable t-sql statement. The results are saved into a database table along with the reports:
+
 
   * FileName
   * Title
@@ -19,23 +27,9 @@ If mutliple queries are found in the report, there will be a db entry for each q
 
  > good luck from here :smirk:
 
-## Credits
 
-Special thanks to [Aidan Ryan](https://github.com/ajryan) for creating the [RptToXml](https://github.com/ajryan/RptToXml) converter.
 
-Sqlize Crystal Reports was created by the Riverside Healthcare Analytics team -
-
-  * Paula Courville
-  * [Darrel Drake](https://www.linkedin.com/in/darrel-drake-57562529)
-  * [Dee Anna Hillebrand](https://github.com/DHillebrand2016)
-  * [Scott Manley](https://github.com/Scott-Manley)
-  * [Madeline Matz](mailto:mmatz@RHC.net)
-  * [Christopher Pickering](https://github.com/christopherpickering)
-  * [Dan Ryan](https://github.com/danryan1011)
-  * [Richard Schissler](https://github.com/schiss152)
-  * [Eric Shultz](https://github.com/eshultz)
-
-## How To Run
+## 🏃 Getting Started
 
 ### First, install SAP's Crystal Reports, Developer for Visual Studio, SP 28
 
@@ -119,7 +113,9 @@ GO
 
 Don't forget to add a user account that can delete and insert.
 
-### Create settings.py file
+### Create .env file
+
+(or, pass the varaibles as environment variables)
 
 ```py
 database = 'DRIVER={ODBC Driver 17 for SQL Server};SERVER=server_name;DATABASE=database_name;UID=username;PWD=password'
@@ -144,3 +140,6 @@ python get_report_data.py # loads BOE report links
 python get_sql.py # gets report sql code
 python get_report_files.py # gets report output links. passed to Atlas as run links
 ```
+## 🏆 Credits
+
+Special thanks to [Aidan Ryan](https://github.com/ajryan) for creating the [RptToXml](https://github.com/ajryan/RptToXml) converter.

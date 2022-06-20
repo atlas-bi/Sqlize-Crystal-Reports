@@ -7,10 +7,17 @@ import re
 import time
 
 import pyodbc
+from dotenv import load_dotenv
 
-import settings
+load_dotenv()
 
-conn = pyodbc.connect(settings.database, autocommit=True)
+CRYSTALDATABASE = os.environ.get(
+    "CRYSTALDATABASE",
+    "DRIVER={ODBC Driver 17 for SQL Server};SERVER=sqlServer;DATABASE=CrystalSQL;UID=joe;PWD=12345",
+)
+CRYSTALBOEOUTPUT = os.environ.get("CRYSTALBOEOUTPUT", "\\\\somewhere\\Output")
+
+conn = pyodbc.connect(CRYSTALDATABASE, autocommit=True)
 cursor = conn.cursor()
 
 
@@ -86,7 +93,7 @@ def _walk(top):
 
 cursor.execute("DELETE FROM [CrystalSQL].[dbo].[Attachments] where 1=1;")
 file_count = 0
-for my_path in _walk(settings.crystal_boe_output_drive):
+for my_path in _walk(CRYSTALBOEOUTPUT):
     if len(my_path[2]):
         for this_file in my_path[2]:
 

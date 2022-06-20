@@ -1,0 +1,13 @@
+name: Codespell
+
+on:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Codespell action
+      uses: codespell-project/actions-codespell@master
+      with:
+        skip: '*.min.js'
