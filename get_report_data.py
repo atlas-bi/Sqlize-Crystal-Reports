@@ -1,6 +1,7 @@
 """Sqlize Crystal Reports."""
 
 import collections
+import os
 
 import pyodbc
 import requests
@@ -78,7 +79,7 @@ while size == batch_size:
     iteration += 1
 
 doc_count = ((iteration - 1) * batch_size) + size
-print(f"Found {doc_count} documents.")
+print(f"Found {doc_count} documents.")  # noqa: T201
 
 # then get reports for all the documents
 cursor.execute("DELETE FROM [CrystalSQL].[dbo].[Reports] where 1=1;")
@@ -100,7 +101,7 @@ for doc in doc_ids:
 
     batch_dict = xmltodict.parse(batch.text)
     if "error" in batch_dict:
-        print(batch_dict)
+        print(batch_dict)  # noqa: T201
         continue
 
     reports = batch_dict["reports"]["report"]
@@ -132,7 +133,7 @@ for doc in doc_ids:
 
             report_count += 1
 
-print(f"Found {report_count} reports.")
+print(f"Found {report_count} reports.")  # noqa: T201
 
 # objects
 
@@ -160,7 +161,7 @@ while size == batch_size:
             if type(doc) != collections.OrderedDict:
                 continue
             doc = doc["content"]["attrs"]
-            # print(doc)
+            # print(doc) # noqa: T201
             cursor.execute(
                 "INSERT INTO [CrystalSQL].[dbo].[Objects] (Title,Cuid,StatusType,Type, LastRun) VALUES (?, ?, ?, ?, ?);",
                 (
@@ -174,12 +175,12 @@ while size == batch_size:
     iteration += 1
 
 doc_count = ((iteration - 1) * batch_size) + size
-print(f"Found {doc_count} objects.")
+print(f"Found {doc_count} objects.")  # noqa: T201
 
 # logoff or you'll run out of sessions lol
 try:
     requests.post(f"{SAPAPIURL}:6405/biprws/logoff", headers=headers)
 except BaseException as e:
-    print(str(e))
+    print(str(e))  # noqa: T201
 
 conn.close()
