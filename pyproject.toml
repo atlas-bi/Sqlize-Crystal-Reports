@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Sqlize Crystal Reports"
-version = "1.0.0-alpha.1"
+version = "1.0.1"
 description = "Enthusiastic attempt at converting Crystal reports to SQL"
 authors = ["Christopher Pickering"]
 license = "GPL-3.0-or-later"
@@ -11,7 +11,8 @@ lxml = "^4.6.5"
 sqlparse = "^0.4.1"
 pyodbc = "^4.0.30"
 requests = "^2.27.1"
-xmltodict = "^0.12.0"
+xmltodict = "^0.13.0"
+python-dotenv = "^0.20.0"
 
 
 [tool.poetry.dev-dependencies]
