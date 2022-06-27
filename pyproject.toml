@@ -11,7 +11,7 @@ lxml = "^4.6.5"
 sqlparse = "^0.4.1"
 pyodbc = "^4.0.30"
 requests = "^2.27.1"
-xmltodict = "^0.12.0"
+xmltodict = "^0.13.0"
 python-dotenv = "^0.20.0"
 
 
