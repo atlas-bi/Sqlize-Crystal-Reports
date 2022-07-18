@@ -9,7 +9,7 @@
     ":npm",
     "npm:unpublishSafe"
   ],
-  "assignees": ["christopherpickering"],
+  "baseBranches": ["dev"],
   "bumpVersion": "patch",
   "commitMessagePrefix": "chore(deps)",
   "labels": ["maintenance", "renovate"],
