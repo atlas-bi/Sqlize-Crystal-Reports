@@ -4,7 +4,7 @@
  <a href="https://www.atlas.bi" target="_blank">Website</a> • <a href="https://demo.atlas.bi" target="_blank">Demo</a> • <a href="https://www.atlas.bi/docs/bi-library/" target="_blank">Documentation</a> • <a href="https://discord.gg/hdz2cpygQD" target="_blank">Chat</a>
 </p>
 <p align="center">
-<a href="https://www.codacy.com/gh/Riverside-Healthcare/Tableau-Metadata-Exporter/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Riverside-Healthcare/Tableau-Metadata-Exporter&amp;utm_campaign=Badge_Grade"><img alt="codacy" src="https://app.codacy.com/project/badge/Grade/cc6a57cbb8f74e5caa103abc1316e904"></a>
+<a href="https://www.codacy.com/gh/atlas-bi/Sqlize-Crystal-Reports/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=atlas-bi/Sqlize-Crystal-Reports&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/c4a2f48575774955aa65adc97d8950a5"/></a>
  <a href="https://sonarcloud.io/project/overview?id=atlas-bi_Sqlize-Crystal-Reports"><img alt="maintainability" src="https://sonarcloud.io/api/project_badges/measure?project=atlas-bi_Sqlize-Crystal-Reports&metric=sqale_rating"></a>
  <a href="https://discord.gg/hdz2cpygQD"><img alt="discord chat" src="https://badgen.net/discord/online-members/hdz2cpygQD/" /></a>
  <a href="https://github.com/atlas-bi/Sqlize-Crystal-Reports/releases"><img alt="latest release" src="https://badgen.net/github/release/atlas-bi/Sqlize-Crystal-Reports" /></a>
@@ -115,7 +115,7 @@ Don't forget to add a user account that can delete and insert.
 
 ### Create .env file
 
-(or, pass the varaibles as environment variables)
+(or, pass the variables as environment variables)
 
 ```py
 database = 'DRIVER={ODBC Driver 17 for SQL Server};SERVER=server_name;DATABASE=database_name;UID=username;PWD=password'
