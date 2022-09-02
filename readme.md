@@ -115,7 +115,7 @@ Don't forget to add a user account that can delete and insert.
 
 ### Create .env file
 
-(or, pass the varaibles as environment variables)
+(or, pass the variables as environment variables)
 
 ```py
 database = 'DRIVER={ODBC Driver 17 for SQL Server};SERVER=server_name;DATABASE=database_name;UID=username;PWD=password'
