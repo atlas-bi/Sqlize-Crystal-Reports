@@ -4,7 +4,7 @@
   "description": "Enthusiastic attempt at converting Crystal reports to SQL",
   "private": true,
   "scripts": {
-    "commit": "git add . && pre-commit run && git add . && cz --no-verify"
+    "commit": "git add . && pre-commit run & git add . && cz --no-verify"
   },
   "repository": {
     "type": "git",

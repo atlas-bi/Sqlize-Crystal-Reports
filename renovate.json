@@ -12,6 +12,7 @@
   "baseBranches": ["dev"],
   "bumpVersion": "patch",
   "commitMessagePrefix": "chore(deps)",
+  "baseBranches": ["dev"],
   "labels": ["maintenance", "renovate"],
   "packageRules": [
     {
