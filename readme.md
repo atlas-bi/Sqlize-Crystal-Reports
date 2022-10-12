@@ -58,6 +58,13 @@ pip install pyodbc lxml sqlparse requests xmltodict
 There are a few tables to create -
 
 ```sql
+USE [master]
+GO
+
+CREATE DATABASE [CrystalSQL]
+ CONTAINMENT = NONE
+GO
+
 USE [CrystalSQL]
 GO
 
@@ -118,18 +125,18 @@ Don't forget to add a user account that can delete and insert.
 (or, pass the variables as environment variables)
 
 ```py
-database = 'DRIVER={ODBC Driver 17 for SQL Server};SERVER=server_name;DATABASE=database_name;UID=username;PWD=password'
+CRYSTALDATABASE = 'DRIVER={ODBC Driver 17 for SQL Server};SERVER=server_name;DATABASE=database_name;UID=username;PWD=password'
 
 # get report sql settings
-rpt_src = '\\\\network\\c$\\path\\to\\.rpt\\files\\'
+RPTSRC = '\\\\server\\Input'
 
 # get report data settings
-sap_api_username = "BOE_REPORT"
-sap_api_password = "password"
-sap_api_url = "http://server.example.net"
+SAPAPIUSERNAME = "BOE_REPORT"
+SAPAPIPASSWORD = "password"
+SAPAPIURL = "http://server.example.net"
 
-# get report files settings
-crystal_boe_output_drive = "\\\\server\\Output"
+# get report files
+CRYSTALBOEOUTPUT = "\\\\server\\Output"
 ```
 
 ### Running
