@@ -53,6 +53,9 @@ This ETL uses python > 3.7. Python can be installed from [https://www.python.org
 
 [C++ build tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) are needed on Windows OS.
 
+[ODBC Driver for SQL Server](https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver16) is required for connecting to the database.
+
+Finally, install the python packages:
 ```sh
 pip install pyodbc lxml sqlparse requests xmltodict
 ```
