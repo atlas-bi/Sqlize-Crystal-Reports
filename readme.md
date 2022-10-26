@@ -49,6 +49,10 @@ Install:
 
 ### Next, install a few Python packages
 
+This ETL uses python > 3.7. Python can be installed from [https://www.python.org/downloads/](https://www.python.org/downloads/)
+
+[C++ build tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) are needed on Windows OS.
+
 ```sh
 pip install pyodbc lxml sqlparse requests xmltodict
 ```
