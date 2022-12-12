@@ -17,7 +17,7 @@ python-dotenv = "^0.21.0"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.9.3"
-tox = "^3.24.5"
+tox = "^4.0.0"
 pylint = "^2.15.0"
 isort = "^5.10.1"
 black = "^22.8.0"
