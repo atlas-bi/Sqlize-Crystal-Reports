@@ -27,8 +27,8 @@ shutil.rmtree(rpt_fldr, ignore_errors=True)
 rpt_fldr.mkdir(exist_ok=True)
 
 # copy in reports
-for report in Path(RTPSRC).glob("*.rpt"):
-    shutil.copyfile(RTPSRC + report.name, str(rpt_fldr / report.name))
+for report in Path(RTPSRC).glob("**/*.rpt"):
+    shutil.copyfile(report, str(rpt_fldr / report.name))
 
 # remove xml folder
 shutil.rmtree(xml_fldr, ignore_errors=True)
