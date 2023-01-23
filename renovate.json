@@ -9,10 +9,9 @@
     ":npm",
     "npm:unpublishSafe"
   ],
-  "assignees": ["christopherpickering"],
+  "baseBranches": ["dev"],
   "bumpVersion": "patch",
   "commitMessagePrefix": "chore(deps)",
-  "baseBranches": ["dev"],
   "labels": ["maintenance", "renovate"],
   "packageRules": [
     {
