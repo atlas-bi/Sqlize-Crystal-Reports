@@ -1,6 +1,6 @@
 {
   "name": "atlas-etl-crystal",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "Enthusiastic attempt at converting Crystal reports to SQL",
   "private": true,
   "scripts": {
@@ -23,11 +23,11 @@
     "@semantic-release/exec": "6.0.3",
     "@semantic-release/git": "10.0.1",
     "@semantic-release/github": "8.0.7",
-    "@semantic-release/npm": "9.0.1",
+    "@semantic-release/npm": "9.0.2",
     "@semantic-release/release-notes-generator": "10.0.3",
     "cz-conventional-changelog": "3.3.0",
-    "semantic-release": "19.0.5",
-    "commitizen": "4.2.6"
+    "semantic-release": "20.0.2",
+    "commitizen": "4.3.0"
   },
   "config": {
     "commitizen": {
