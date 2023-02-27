@@ -65,7 +65,6 @@ cursor.execute("DELETE FROM [CrystalSQL].[dbo].[Templates] where 1=1;")
 count = 0
 query_count = 0
 for xml in xml_fldr.glob("*.xml"):
-
     try:
         report = Report(str((xml_fldr / xml.name).absolute()))
         title = report.title()
