@@ -409,7 +409,6 @@ class Report:
                 )
 
             except Exception:
-
                 sql = sqlparse.format(
                     sql, keyword_case="lower", identifier_case="lower", comma_first=True
                 )
