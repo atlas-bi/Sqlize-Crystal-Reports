@@ -119,7 +119,6 @@ for doc in doc_ids:
         )
         report_count += 1
     else:
-
         for report in reports:
             cursor.execute(
                 "INSERT INTO [CrystalSQL].[dbo].[Reports] (Name,Reference,ReportId,DocumentId) VALUES (?, ?, ?, ?);",
@@ -144,7 +143,6 @@ size = batch_size
 cursor.execute("DELETE FROM [CrystalSQL].[dbo].[Objects] where 1=1;")
 
 while size == batch_size:
-
     # get batch of reports
     batch = requests.get(
         f"{SAPAPIURL}:6405/biprws/bionbi/content/list?page={iteration}&pageSize={batch_size}",

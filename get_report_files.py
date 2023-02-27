@@ -81,7 +81,6 @@ def _walk(top):
     # Recurse into sub-directories
     islink, join = path.islink, path.join
     for dirname in dirs:
-
         new_path = join(top, dirname)
         # Issue #23605: os.path.islink() is used instead of caching
         # entry.is_symlink() result during the loop on os.scandir() because
@@ -96,7 +95,6 @@ file_count = 0
 for my_path in _walk(CRYSTALBOEOUTPUT):
     if len(my_path[2]):
         for this_file in my_path[2]:
-
             cursor.execute(
                 "INSERT INTO [CrystalSQL].[dbo].[Attachments] (HRX,PDF,CreationDate, Name) VALUES (?, ?, ?, ?);",
                 (
