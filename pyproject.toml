@@ -6,13 +6,13 @@ authors = ["Christopher Pickering"]
 license = "GPL-3.0-or-later"
 
 [tool.poetry.dependencies]
-python = "^3.7.2"
+python = "^3.8.0"
 lxml = "^4.9.1"
 sqlparse = "^0.4.1"
 pyodbc = "^4.0.30"
 requests = "^2.27.1"
 xmltodict = "^0.13.0"
-python-dotenv = "^0.21.0"
+python-dotenv = "^1.0.0"
 
 
 [tool.poetry.dev-dependencies]
