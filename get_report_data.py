@@ -37,6 +37,7 @@ login_page = requests.post(
         "auth": "secEnterprise",
     },
     headers={"Content-Type": "application/json"},
+    timeout=60,
 )
 # verify successful login
 if "logonToken" not in login_page.text:
@@ -59,6 +60,7 @@ while size == batch_size:
     batch = requests.get(
         f"{SAPAPIURL}:6405/biprws/raylight/v1/documents?offset={offset}&limit={batch_size}",
         headers=headers,
+        timeout=60,
     )
 
     docs = xmltodict.parse(batch.text)["documents"]["document"]
@@ -97,6 +99,7 @@ for doc in doc_ids:
     batch = requests.get(
         f"{SAPAPIURL}:6405/biprws/raylight/v1/documents/{doc_id}/reports",
         headers=headers,
+        timeout=60,
     )
 
     batch_dict = xmltodict.parse(batch.text)
@@ -147,6 +150,7 @@ while size == batch_size:
     batch = requests.get(
         f"{SAPAPIURL}:6405/biprws/bionbi/content/list?page={iteration}&pageSize={batch_size}",
         headers=headers,
+        timeout=60,
     )
 
     if "entry" in xmltodict.parse(batch.text)["feed"]:
@@ -177,7 +181,7 @@ print(f"Found {doc_count} objects.")  # noqa: T201
 
 # logoff or you'll run out of sessions lol
 try:
-    requests.post(f"{SAPAPIURL}:6405/biprws/logoff", headers=headers)
+    requests.post(f"{SAPAPIURL}:6405/biprws/logoff", headers=headers, timeout=60)
 except BaseException as e:
     print(str(e))  # noqa: T201
 
