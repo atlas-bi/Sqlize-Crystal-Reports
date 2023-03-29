@@ -15,7 +15,7 @@
   "labels": ["maintenance", "renovate"],
   "packageRules": [
     {
-      "matchUpdateTypes": ["pin","digest", "minor", "patch"],
+      "matchUpdateTypes": ["pin","digest", "minor", "patch", "major"],
       "automerge": true
     },
     {
@@ -33,6 +33,6 @@
       "automerge": true
     }
   ],
-  "schedule": ["before 8am on Monday"],
+  "schedule": ["before 10pm on Sunday"],
   "timezone": "America/Chicago"
 }

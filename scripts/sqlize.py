@@ -68,9 +68,6 @@ class Sqlize:
     def __clean_names(self):
         """Cleanup variable names."""
         self.cmd = re.sub(r"[\?%@]", "@", self.cmd)
-        self.cmd = re.sub(
-            r"@?[^a-zA-Z0-9_.]+", "", self.cmd.replace(" ", "_").replace("-", "_")
-        )
         self.cmd = re.sub(r"[{}]", "", self.cmd)
 
     def __clean_params(self):
