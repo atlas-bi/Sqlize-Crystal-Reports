@@ -85,10 +85,13 @@ class Report:
         rst = ""
         # pylint: disable=R1702
         for table_links in self.database.find("TableLinks").findall("TableLink"):
-            if table_links.attrib["JoinType"] == "LeftOuter":
-                join_type = table_links.attrib["JoinType"].replace(
-                    "LeftOuter", "Left Outer Join"
+            if table_links.attrib["JoinType"] in ["LeftOuter", "Equal"]:
+                join_type = (
+                    table_links.attrib["JoinType"]
+                    .replace("LeftOuter", "Left Outer Join")
+                    .replace("Equal", "Inner Join")
                 )
+
                 for iteration, source_field in enumerate(
                     table_links.find("SourceFields").findall("Field")
                 ):
