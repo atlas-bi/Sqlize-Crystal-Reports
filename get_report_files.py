@@ -41,7 +41,7 @@ def _walk(top):
         # to earlier import-*.
         scandir_it = os.scandir(top)
     except OSError as error:
-        print(error)  # noqa: T201
+        print(error)
 
         return
 
@@ -53,7 +53,7 @@ def _walk(top):
                 except StopIteration:
                     break
             except OSError as error:
-                print(error)  # noqa: T201
+                print(error)
 
                 return
 
@@ -69,12 +69,11 @@ def _walk(top):
                 # only dirs matching our pattern. remember re.match uses ^ start of string
                 if re.match(r"\d|-", entry.name):  # modified in last 6 months
                     dirs.append(entry.name)
-            else:
-                if (
-                    re.search(r".pdf$", entry.name, re.I)
-                    and entry.stat().st_ctime > six_months_ago
-                ):  # created in last 6 months
-                    nondirs.append([entry.name, entry.stat().st_ctime])
+            elif (
+                re.search(r".pdf$", entry.name, re.I)
+                and entry.stat().st_ctime > six_months_ago
+            ):  # created in last 6 months
+                nondirs.append([entry.name, entry.stat().st_ctime])
 
     yield top, dirs, nondirs
 
@@ -105,8 +104,7 @@ for my_path in _walk(CRYSTALBOEOUTPUT):
                 ),
             )
             file_count += 1
-            # print(file[0].split("-")[0], my_path[0] + "\\" + file[0], datetime.datetime.fromtimestamp(file[1]) ) # noqa: T201
 
-print(f"Found {file_count} files.")  # noqa: T201
+print(f"Found {file_count} files.")
 
 conn.close()
