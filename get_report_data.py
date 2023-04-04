@@ -81,7 +81,7 @@ while size == batch_size:
     iteration += 1
 
 doc_count = ((iteration - 1) * batch_size) + size
-print(f"Found {doc_count} documents.")  # noqa: T201
+print(f"Found {doc_count} documents.")
 
 # then get reports for all the documents
 cursor.execute("DELETE FROM [CrystalSQL].[dbo].[Reports] where 1=1;")
@@ -104,7 +104,7 @@ for doc in doc_ids:
 
     batch_dict = xmltodict.parse(batch.text)
     if "error" in batch_dict:
-        print(batch_dict)  # noqa: T201
+        print(batch_dict)
         continue
 
     reports = batch_dict["reports"]["report"]
@@ -135,7 +135,7 @@ for doc in doc_ids:
 
             report_count += 1
 
-print(f"Found {report_count} reports.")  # noqa: T201
+print(f"Found {report_count} reports.")
 
 # objects
 
@@ -162,27 +162,27 @@ while size == batch_size:
             # skip non dict
             if type(doc) != collections.OrderedDict:
                 continue
-            doc = doc["content"]["attrs"]
-            # print(doc) # noqa: T201
+            current = doc["content"]["attrs"]
+
             cursor.execute(
                 "INSERT INTO [CrystalSQL].[dbo].[Objects] (Title,Cuid,StatusType,Type, LastRun) VALUES (?, ?, ?, ?, ?);",
                 (
-                    doc["attr"][3].get("#text"),
-                    doc["attr"][0].get("#text"),
-                    doc["attr"][1].get("#text"),
-                    doc["attr"][4].get("#text"),
-                    doc["attr"][2].get("#text"),
+                    current["attr"][3].get("#text"),
+                    current["attr"][0].get("#text"),
+                    current["attr"][1].get("#text"),
+                    current["attr"][4].get("#text"),
+                    current["attr"][2].get("#text"),
                 ),
             )
     iteration += 1
 
 doc_count = ((iteration - 1) * batch_size) + size
-print(f"Found {doc_count} objects.")  # noqa: T201
+print(f"Found {doc_count} objects.")
 
 # logoff or you'll run out of sessions lol
 try:
     requests.post(f"{SAPAPIURL}:6405/biprws/logoff", headers=headers, timeout=60)
 except BaseException as e:
-    print(str(e))  # noqa: T201
+    print(str(e))
 
 conn.close()
