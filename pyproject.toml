@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Sqlize Crystal Reports"
-version = "1.3.0-alpha.1"
+version = "1.3.0"
 description = "Enthusiastic attempt at converting Crystal reports to SQL"
 authors = ["Christopher Pickering"]
 license = "GPL-3.0-or-later"
