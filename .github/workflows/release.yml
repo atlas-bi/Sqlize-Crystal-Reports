@@ -1,31 +1,41 @@
-name: Release
+name: 🚀 Release
 
 on:
   push:
-    branches-ignore:
-    - dev
+    branches: [master, alpha]
 
 jobs:
   release:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+    - name: 💾 Checkout
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
         persist-credentials: false
 
-    - name: Setup Poetry
+    - name: ⎔ Setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: 📥 Download deps
+      uses: bahmutov/npm-install@v1
+      with:
+        useLockFile: false
+
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: 🎶 Setup Poetry
       uses: snok/install-poetry@v1
 
-    - name: Semantic Release
+    - name: 🚀 Semantic Release
       uses: cycjimmy/semantic-release-action@v3
       with:
         semantic_version: 18
-        extra_plugins: |
-          @semantic-release/changelog@6
-          @semantic-release/exec
-          @semantic-release/git@10
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_PAT }}

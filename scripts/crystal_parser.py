@@ -142,7 +142,7 @@ class Report:
                         + table_links.attrib["JoinType"]
                         + "*/ \n"
                     )
-                    if rst == "":
+                    if not rst:
                         rst += (
                             "from "
                             + source_field.attrib["FormulaName"][1:-1].split(".")[0]
@@ -163,7 +163,7 @@ class Report:
             tables.remove(sql)
 
         for sql in tables:
-            if rst == "":
+            if not rst:
                 rst += " from "
             else:
                 rst += ", "
@@ -294,7 +294,7 @@ class Report:
                 elif "Name" in field.attrib:
                     parameter += "/* " + field.attrib["Name"] + " */ "
 
-                # inital value
+                # initial value
                 if field.find("ParameterInitialValues") is not None:
                     for value in field.find("ParameterInitialValues").findall(
                         "ParameterInitialValue"
@@ -370,7 +370,7 @@ class Report:
             self.command = ""
 
             # pylint: disable=C0301
-            disclaimer = "/* caution: this report was parsed from a crystal report and may not run */\n "  # noqa: E501
+            disclaimer = "/* caution: this report was parsed from a crystal report and may not run */\n "
             form = self.formulas()
 
             params = self.param_def()
