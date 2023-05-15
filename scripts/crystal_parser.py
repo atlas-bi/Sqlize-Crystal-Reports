@@ -121,9 +121,7 @@ class Report:
                         ][1:-1]
                         + "\n"
                     )
-                    join_tables.append(
-                        source_field.attrib["FormulaName"][1:-1].split(".")[0]
-                    )
+
                     join_tables.append(
                         table_links.find("DestinationFields")[iteration]
                         .attrib["FormulaName"][1:-1]
@@ -144,7 +142,7 @@ class Report:
                         + table_links.attrib["JoinType"]
                         + "*/ \n"
                     )
-                    if rst == "":
+                    if not rst:
                         rst += (
                             "from "
                             + source_field.attrib["FormulaName"][1:-1].split(".")[0]
@@ -165,19 +163,19 @@ class Report:
             tables.remove(sql)
 
         for sql in tables:
-            if rst == "":
+            if not rst:
                 rst += " from "
             else:
                 rst += ", "
-                rst += (
-                    "".join(
-                        [
-                            value + " as " + key
-                            for key, value in dict(list(sql.items())[0:1]).items()
-                        ]
-                    )
-                    + " "
+            rst += (
+                "".join(
+                    [
+                        value + " as " + key
+                        for key, value in dict(list(sql.items())[0:1]).items()
+                    ]
                 )
+                + " "
+            )
 
             if "Command" in sql:
                 rst += "command as command"
@@ -199,9 +197,9 @@ class Report:
         if conditions + self.conditions():
             rst += "\n where " + ("\n and ").join(conditions + self.conditions())
         if self.sorts():
-            rst += "\n order by " + "\n,".join(self.sorts())
+            rst += "\n/* order by " + "\n, ".join(self.sorts()) + "*/ "
         if self.groups():
-            rst += "\n/* group by " + ",".join(self.groups()) + "*/ "
+            rst += "\n/* group by " + ", ".join(self.groups()) + "*/ "
         rst += self.summary_fields()
         return rst
 
@@ -296,7 +294,7 @@ class Report:
                 elif "Name" in field.attrib:
                     parameter += "/* " + field.attrib["Name"] + " */ "
 
-                # inital value
+                # initial value
                 if field.find("ParameterInitialValues") is not None:
                     for value in field.find("ParameterInitialValues").findall(
                         "ParameterInitialValue"
@@ -372,7 +370,7 @@ class Report:
             self.command = ""
 
             # pylint: disable=C0301
-            disclaimer = "/* caution: this report was parsed from a crystal report and may not run */\n "  # noqa: E501
+            disclaimer = "/* caution: this report was parsed from a crystal report and may not run */\n "
             form = self.formulas()
 
             params = self.param_def()
@@ -406,6 +404,7 @@ class Report:
                 sql = sqlparse.format(
                     sql,
                     reindent=True,
+                    use_space_around_operators=True,
                     keyword_case="lower",
                     identifier_case="lower",
                     comma_first=True,
