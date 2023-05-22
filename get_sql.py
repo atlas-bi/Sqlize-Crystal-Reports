@@ -30,7 +30,7 @@ def converter(original_report):
     try:
         shutil.copyfile(original_report, report.absolute())
     except Exception as e:
-        print(f"Download file failed on {report.name}.\n\n{str(e)}", flush=True)
+        print(f"Download file failed on {report.name}.\n\n{e}", flush=True)
         return 0
 
     try:
