@@ -1,6 +1,6 @@
 {
   "name": "atlas-etl-crystal",
-  "version": "1.1.7",
+  "version": "1.1.16",
   "description": "Enthusiastic attempt at converting Crystal reports to SQL",
   "private": true,
   "scripts": {
@@ -19,14 +19,14 @@
   "homepage": "https://github.com/atlas-bi/Sqlize-Crystal-Reports#readme",
   "devDependencies": {
     "@semantic-release/changelog": "6.0.3",
-    "@semantic-release/commit-analyzer": "9.0.2",
+    "@semantic-release/commit-analyzer": "10.0.4",
     "@semantic-release/exec": "6.0.3",
     "@semantic-release/git": "10.0.1",
-    "@semantic-release/github": "8.0.7",
-    "@semantic-release/npm": "10.0.3",
-    "@semantic-release/release-notes-generator": "11.0.1",
+    "@semantic-release/github": "9.0.5",
+    "@semantic-release/npm": "10.0.5",
+    "@semantic-release/release-notes-generator": "11.0.7",
     "cz-conventional-changelog": "3.3.0",
-    "semantic-release": "21.0.2",
+    "semantic-release": "21.1.1",
     "commitizen": "4.3.0"
   },
   "config": {
