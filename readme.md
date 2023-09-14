@@ -1,7 +1,7 @@
 <h1 align="center">Sqlize Crystal Reports</h1>
 <h4 align="center">Atlas BI Library ETL | Crystal Reports Supplimentary ETL</h4>
 <p align="center">
- <a href="https://www.atlas.bi" target="_blank">Website</a> • <a href="https://demo.atlas.bi" target="_blank">Demo</a> • <a href="https://www.atlas.bi/docs/bi-library/" target="_blank">Documentation</a> • <a href="https://discord.gg/hdz2cpygQD" target="_blank">Chat</a>
+ <a href="https://www.atlas.bi" target="_blank">Website</a> • <a href="https://demo.atlas.bi" target="_blank">Demo</a> • <a href="https://www.atlas.bi/docs/library/" target="_blank">Documentation</a> • <a href="https://discord.gg/hdz2cpygQD" target="_blank">Chat</a>
 </p>
 <p align="center">
 <a href="https://www.codacy.com/gh/atlas-bi/Sqlize-Crystal-Reports/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=atlas-bi/Sqlize-Crystal-Reports&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/c4a2f48575774955aa65adc97d8950a5"/></a>
