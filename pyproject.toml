@@ -7,7 +7,7 @@ license = "GPL-3.0-or-later"
 
 [tool.poetry.dependencies]
 python = "^3.8.0"
-lxml = "^4.9.1"
+lxml = "^5.0.0"
 sqlparse = "^0.4.1"
 pyodbc = "^5.0.0"
 requests = "^2.27.1"
