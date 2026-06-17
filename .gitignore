@@ -1,3 +1,4 @@
+.DS_STORE
 .ruff_cache
 crystal_rpt
 crystal_xml
