@@ -1,24 +1,25 @@
 {
   "extends": [
-    "config:base",
+    "config:recommended",
     "group:allNonMajor",
     ":separateMultipleMajorReleases",
     ":ignoreUnstable",
     ":enableVulnerabilityAlertsWithLabel(security)",
     ":rebaseStalePrs",
-    ":npm",
-    "npm:unpublishSafe"
+    "npm:unpublishSafe",
+    "security:minimumReleaseAgeNpm"
   ],
   "baseBranches": ["dev"],
   "bumpVersion": "patch",
-  "commitMessagePrefix": "chore(deps)",
+  "commitMessagePrefix": "chore(deps): ",
   "labels": ["maintenance", "renovate"],
   "automergeType": "pr",
   "platformAutomerge": true,
   "automergeStrategy": "squash",
+  "minimumReleaseAge": "1 day",
   "packageRules": [
     {
-      "matchUpdateTypes": ["pin","digest", "minor", "patch", "major"],
+      "matchUpdateTypes": ["pin", "digest", "minor", "patch", "major"],
       "automerge": true
     },
     {
@@ -26,12 +27,12 @@
       "automerge": true
     },
     {
-      "extends": "packages:linters",
+      "extends": ["packages:linters"],
       "groupName": "linters",
       "automerge": true
     },
     {
-      "extends": "packages:test",
+      "extends": ["packages:test"],
       "groupName": "test packages",
       "automerge": true
     }
