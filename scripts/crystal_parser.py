@@ -73,9 +73,11 @@ class Report:
             tables.append(
                 {
                     table.attrib["Alias"]: table.attrib["Name"],
-                    "CommandText": Sqlize(table.find("Command").text).sql()
-                    if table.attrib["Alias"] == "Command"
-                    else None,
+                    "CommandText": (
+                        Sqlize(table.find("Command").text).sql()
+                        if table.attrib["Alias"] == "Command"
+                        else None
+                    ),
                 }
             )
 
@@ -230,11 +232,15 @@ class Report:
         sort = []
         for field in self.data_definition.find("SortFields").findall("SortField"):
             # pylint: disable=W0106
-            sort.append(
-                Sqlize(field.attrib["Field"]).names()
-                + " "
-                + Sqlize(field.attrib["SortDirection"]).sorts()
-            ) if "SortDirection" in field.attrib else ""
+            (
+                sort.append(
+                    Sqlize(field.attrib["Field"]).names()
+                    + " "
+                    + Sqlize(field.attrib["SortDirection"]).sorts()
+                )
+                if "SortDirection" in field.attrib
+                else ""
+            )
         return sort
 
     def formulas(self):
