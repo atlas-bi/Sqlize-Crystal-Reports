@@ -25,9 +25,7 @@ class Sqlize:
         # with (select...) cannot have order by
         # remove order by
 
-        self.cmd = re.sub(
-            r"order by [\w+\.?\w+,?\s?\w?]+$", "", self.cmd, flags=re.IGNORECASE
-        )
+        self.cmd = re.sub(r"order by [\w+\.?\w+,?\s?\w?]+$", "", self.cmd, flags=re.IGNORECASE)
 
         # wrap with paren and add select
 
@@ -61,9 +59,7 @@ class Sqlize:
 
     def sorts(self):
         """Cleanup sorts."""
-        return self.cmd.replace("AscendingOrder", "asc").replace(
-            "DescendingOrder", "desc"
-        )
+        return self.cmd.replace("AscendingOrder", "asc").replace("DescendingOrder", "desc")
 
     def __clean_names(self):
         """Cleanup variable names."""
@@ -78,9 +74,7 @@ class Sqlize:
         self.cmd = re.sub(
             r"as ({\'.+?\'})",
             lambda m: "as "
-            + re.sub(
-                r"[^a-zA-Z0-9_.]+", "", m.group(1).replace(" ", "_").replace("-", "_")
-            ),
+            + re.sub(r"[^a-zA-Z0-9_.]+", "", m.group(1).replace(" ", "_").replace("-", "_")),
             self.cmd,
             flags=re.IGNORECASE,
         )
@@ -114,6 +108,4 @@ class Sqlize:
 
         # remove extra text
         self.cmd = self.cmd.replace("distinctcount_", "")
-        self.cmd = re.sub(
-            r"distinctcount_", lambda m: " /* " + m.group(0) + " */ ", self.cmd
-        )
+        self.cmd = re.sub(r"distinctcount_", lambda m: " /* " + m.group(0) + " */ ", self.cmd)

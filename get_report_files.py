@@ -70,8 +70,7 @@ def _walk(top):
                 if re.match(r"\d|-", entry.name):  # modified in last 6 months
                     dirs.append(entry.name)
             elif (
-                re.search(r".pdf$", entry.name, re.I)
-                and entry.stat().st_ctime > six_months_ago
+                re.search(r".pdf$", entry.name, re.I) and entry.stat().st_ctime > six_months_ago
             ):  # created in last 6 months
                 nondirs.append([entry.name, entry.stat().st_ctime])
 
