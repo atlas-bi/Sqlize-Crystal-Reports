@@ -116,9 +116,9 @@ class Report:
                         + " on "
                         + source_field.attrib["FormulaName"][1:-1]
                         + " = "
-                        + table_links.find("DestinationFields")[iteration].attrib[
-                            "FormulaName"
-                        ][1:-1]
+                        + table_links.find("DestinationFields")[iteration].attrib["FormulaName"][
+                            1:-1
+                        ]
                         + "\n"
                     )
 
@@ -135,9 +135,9 @@ class Report:
                     join_type = (
                         source_field.attrib["FormulaName"][1:-1]
                         + " = "
-                        + table_links.find("DestinationFields")[iteration].attrib[
-                            "FormulaName"
-                        ][1:-1]
+                        + table_links.find("DestinationFields")[iteration].attrib["FormulaName"][
+                            1:-1
+                        ]
                         + " /*"
                         + table_links.attrib["JoinType"]
                         + "*/ \n"
@@ -169,10 +169,7 @@ class Report:
                 rst += ", "
             rst += (
                 "".join(
-                    [
-                        value + " as " + key
-                        for key, value in dict(list(sql.items())[0:1]).items()
-                    ]
+                    [value + " as " + key for key, value in dict(list(sql.items())[0:1]).items()]
                 )
                 + " "
             )
@@ -183,15 +180,11 @@ class Report:
                 # else just wrap up the whole thing :)
                 if not re.search(r"with", sql["CommandText"], flags=re.IGNORECASE):
                     self.command = (
-                        "\n\r; with command as ("
-                        + Sqlize(sql["CommandText"]).sql()
-                        + ")\n\r "
+                        "\n\r; with command as (" + Sqlize(sql["CommandText"]).sql() + ")\n\r "
                     )
                 else:
                     # remove order by (cannot have in a with)
-                    self.command = (
-                        "\n\r" + Sqlize(sql["CommandText"]).sql_with() + "\n\r"
-                    )
+                    self.command = "\n\r" + Sqlize(sql["CommandText"]).sql_with() + "\n\r"
 
         rst += (" ").join(joins)
         if conditions + self.conditions():
@@ -207,14 +200,10 @@ class Report:
         """Get conditions."""
         cond = []
         if self.data_definition.find("RecordSelectionFormula").text:
-            cond.append(
-                Sqlize(self.data_definition.find("RecordSelectionFormula").text).sql()
-            )
+            cond.append(Sqlize(self.data_definition.find("RecordSelectionFormula").text).sql())
 
         if self.data_definition.find("GroupSelectionFormula").text:
-            cond.append(
-                Sqlize(self.data_definition.find("GroupSelectionFormula").text).sql()
-            )
+            cond.append(Sqlize(self.data_definition.find("GroupSelectionFormula").text).sql())
 
         return cond
 
@@ -370,7 +359,9 @@ class Report:
             self.command = ""
 
             # pylint: disable=C0301
-            disclaimer = "/* caution: this report was parsed from a crystal report and may not run */\n "
+            disclaimer = (
+                "/* caution: this report was parsed from a crystal report and may not run */\n "
+            )
             form = self.formulas()
 
             params = self.param_def()
@@ -380,11 +371,7 @@ class Report:
             joins = self.joins()
 
             databases = (
-                "use "
-                + self.get_database()
-                + "; --"
-                + self.get_database_login()
-                + "\n\r"
+                "use " + self.get_database() + "; --" + self.get_database_login() + "\n\r"
                 if self.get_database()
                 else ""
             )
@@ -415,8 +402,6 @@ class Report:
                     sql, keyword_case="lower", identifier_case="lower", comma_first=True
                 )
 
-            sql_list.append(
-                sql.replace("/*", "\n/*").replace("*/", "*/\n").replace("\n\n", "\n")
-            )
+            sql_list.append(sql.replace("/*", "\n/*").replace("*/", "*/\n").replace("\n\n", "\n"))
 
         return list(dict.fromkeys(sql_list))

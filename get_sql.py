@@ -44,9 +44,7 @@ def converter(original_report):
             capture_output=True,
         )
         if command.stderr:
-            print(
-                f"Failed to convert {report.name}\n\n", str(command.stderr), flush=True
-            )
+            print(f"Failed to convert {report.name}\n\n", str(command.stderr), flush=True)
             return 0
 
         report.unlink(missing_ok=True)

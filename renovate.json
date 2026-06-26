@@ -13,6 +13,9 @@
   "bumpVersion": "patch",
   "commitMessagePrefix": "chore(deps)",
   "labels": ["maintenance", "renovate"],
+  "automergeType": "pr",
+  "platformAutomerge": true,
+  "automergeStrategy": "squash",
   "packageRules": [
     {
       "matchUpdateTypes": ["pin","digest", "minor", "patch", "major"],
