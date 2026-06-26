@@ -19,26 +19,6 @@ python-dotenv = "^1.0.0"
 ruff = "^0.4.0"
 pre-commit = "^3.0.0"
 tox = "^4.0.0"
-isort = "^5.10.1"
-black = "^24.0.0"
-
-[tool.black]
-max_line_length = 99
-exclude = '''
-    /(
-        \.git
-      | \.tox
-      | \.venv
-      | node_modules
-
-      # The following are specific to Black, you probably don't want those.
-      | blib2to3
-      | tests/data
-    )/
-    '''
-
-[tool.isort]
-profile = "black"
 
 [build-system]
 requires = ["poetry-core>=2.0.0"]
@@ -46,5 +26,11 @@ build-backend = "poetry.core.masonry.api"
 
 
 [tool.ruff]
-select = ["E", "F", "B", 'A', 'Q', "ARG", "ERA","PL","RUF"]
-ignore = ["E501",'PLR0912', "PLW1510"]
+line-length = 99
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "A", "Q", "ARG", "ERA", "PL", "RUF", "I"]
+ignore = ["E501", "PLR0912", "PLW1510"]
+
+[tool.ruff.format]
+quote-style = "double"

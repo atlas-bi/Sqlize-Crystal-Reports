@@ -87,9 +87,7 @@ print(f"Found {doc_count} documents.")
 cursor.execute("DELETE FROM [CrystalSQL].[dbo].[Reports] where 1=1;")
 
 # get the docs ids
-doc_ids = cursor.execute(
-    "select documentid from [CrystalSQL].[dbo].[Documents]"
-).fetchall()
+doc_ids = cursor.execute("select documentid from [CrystalSQL].[dbo].[Documents]").fetchall()
 
 report_count = 0
 for doc in doc_ids:

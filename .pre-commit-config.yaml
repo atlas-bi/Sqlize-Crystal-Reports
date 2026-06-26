@@ -3,12 +3,14 @@ ci:
   autoupdate_schedule: weekly
   autofix_commit_msg: 'chore(pre-commit): autofix run'
   autoupdate_commit_msg: 'chore(pre-commit): autoupdate hooks'
+
 exclude: >
   (?x)(
       docs/|
       node_modules/|
       RptToXml/
   )
+
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v4.5.0
@@ -16,32 +18,20 @@ repos:
   - id: trailing-whitespace
   - id: end-of-file-fixer
   - id: check-yaml
-- repo: https://github.com/PyCQA/autoflake
-  rev: v2.2.1
+
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.4.0
   hooks:
-  - id: autoflake
-    exclude: &fixtures tests/functional/|tests/input|tests/extensions/data|tests/regrtest_data/|tests/data/
-    args:
-    - --in-place
-    - --remove-all-unused-imports
-    - --expand-star-imports
-    - --remove-duplicate-keys
-    - --remove-unused-variables
+  - id: ruff
+    args: [--fix]
+  - id: ruff-format
+
 - repo: https://github.com/asottile/pyupgrade
   rev: v3.15.0
   hooks:
   - id: pyupgrade
-    args: [--py36-plus]
-- repo: https://github.com/PyCQA/isort
-  rev: 5.13.0
-  hooks:
-  - id: isort
-    exclude: docs*
-    additional_dependencies: [toml]
-- repo: https://github.com/psf/black
-  rev: 23.11.0
-  hooks:
-  - id: black
+    args: [--py310-plus]
+
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
   rev: v2.11.0
   hooks:
