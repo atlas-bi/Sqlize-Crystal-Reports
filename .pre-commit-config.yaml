@@ -1,13 +1,6 @@
-ci:
-  autoupdate_branch: dev
-  autoupdate_schedule: weekly
-  autofix_commit_msg: 'chore(pre-commit): autofix run'
-  autoupdate_commit_msg: 'chore(pre-commit): autoupdate hooks'
-
 exclude: >
   (?x)(
       docs/|
-      node_modules/|
       RptToXml/
   )
 
@@ -20,22 +13,8 @@ repos:
   - id: check-yaml
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.4.0
+  rev: v0.17.5
   hooks:
   - id: ruff
     args: [--fix]
   - id: ruff-format
-
-- repo: https://github.com/asottile/pyupgrade
-  rev: v3.15.0
-  hooks:
-  - id: pyupgrade
-    args: [--py310-plus]
-
-- repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-  rev: v2.11.0
-  hooks:
-  - id: pretty-format-ini
-    args: [--autofix]
-  - id: pretty-format-yaml
-    args: [--autofix, --indent, '2']

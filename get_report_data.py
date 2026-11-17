@@ -158,7 +158,7 @@ while size == batch_size:
 
         for doc in docs:
             # skip non dict
-            if type(doc) != collections.OrderedDict:
+            if not isinstance(doc, collections.OrderedDict):
                 continue
             current = doc["content"]["attrs"]
 
