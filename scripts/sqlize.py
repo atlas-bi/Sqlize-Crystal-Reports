@@ -73,8 +73,10 @@ class Sqlize:
 
         self.cmd = re.sub(
             r"as ({\'.+?\'})",
-            lambda m: "as "
-            + re.sub(r"[^a-zA-Z0-9_.]+", "", m.group(1).replace(" ", "_").replace("-", "_")),
+            lambda m: (
+                "as "
+                + re.sub(r"[^a-zA-Z0-9_.]+", "", m.group(1).replace(" ", "_").replace("-", "_"))
+            ),
             self.cmd,
             flags=re.IGNORECASE,
         )
@@ -84,10 +86,12 @@ class Sqlize:
 
         self.cmd = re.sub(
             r"{[\?@%](.+?)}",
-            lambda m: "@"
-            + re.sub(
-                r"[^a-zA-Z0-9_.]+", "", m.group(1).replace(" ", "_").replace("-", "_")
-            ).replace(" ", "_"),
+            lambda m: (
+                "@"
+                + re.sub(
+                    r"[^a-zA-Z0-9_.]+", "", m.group(1).replace(" ", "_").replace("-", "_")
+                ).replace(" ", "_")
+            ),
             self.cmd,
         )
 

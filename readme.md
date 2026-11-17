@@ -49,15 +49,15 @@ Install:
 
 ### Next, install a few Python packages
 
-This ETL uses python > 3.7. Python can be installed from [https://www.python.org/downloads/](https://www.python.org/downloads/)
+This ETL uses Python 3.10+. Python can be installed from [https://www.python.org/downloads/](https://www.python.org/downloads/)
 
 [C++ build tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) are needed on Windows OS.
 
 [ODBC Driver for SQL Server](https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver16) is required for connecting to the database.
 
-Finally, install the python packages:
+Finally, install the Python packages:
 ```sh
-pip install pyodbc lxml sqlparse requests xmltodict
+pip install -r requirements.txt
 ```
 
 ### Create Database
@@ -132,10 +132,10 @@ Don't forget to add a user account that can delete and insert.
 (or, pass the variables as environment variables)
 
 ```py
-CRYSTALDATABASE = 'DRIVER={ODBC Driver 17 for SQL Server};SERVER=server_name;DATABASE=database_name;UID=username;PWD=password'
+CRYSTALDATABASE = "DRIVER={ODBC Driver 17 for SQL Server};SERVER=server_name;DATABASE=database_name;UID=username;PWD=password"
 
 # get report sql settings
-RPTSRC = '\\\\server\\Input'
+RPTSRC = "\\\\server\\Input"
 
 # get report data settings
 SAPAPIUSERNAME = "BOE_REPORT"
