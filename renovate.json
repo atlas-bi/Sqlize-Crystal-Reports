@@ -1,47 +1,17 @@
 {
-  "extends": [
-    "config:recommended",
-    "group:allNonMajor",
-    ":separateMultipleMajorReleases",
-    ":ignoreUnstable",
-    ":enableVulnerabilityAlertsWithLabel(security)",
-    ":rebaseStalePrs",
-    ":npm",
-    "security:minimumReleaseAgeNpm"
-  ],
-  "baseBranchPatterns": [
-    "dev"
-  ],
-  "bumpVersion": "patch",
-  "commitMessagePrefix": "chore(deps)",
+  "extends": ["config:recommended"],
+  "baseBranches": ["dev"],
+  "schedule": ["before 10pm on the first day of the month"],
+  "timezone": "America/Chicago",
   "labels": ["maintenance", "renovate"],
-  "automergeType": "pr",
-  "platformAutomerge": true,
-  "automergeStrategy": "squash",
+  "dependencyDashboard": false,
   "packageRules": [
     {
-      "matchUpdateTypes": ["pin","digest", "minor", "patch", "major"],
-      "automerge": true
-    },
-    {
-      "matchDepTypes": ["devDependencies"],
-      "automerge": true
-    },
-    {
-      "extends": [
-        "packages:linters"
-      ],
-      "groupName": "linters",
-      "automerge": true
-    },
-    {
-      "extends": [
-        "packages:test"
-      ],
-      "groupName": "test packages",
-      "automerge": true
+      "description": "Single monthly PR for all updates",
+      "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest", "lockFileMaintenance"],
+      "groupName": "all dependencies",
+      "groupSlug": "all",
+      "automerge": false
     }
-  ],
-  "schedule": ["before 10pm on Sunday"],
-  "timezone": "America/Chicago"
+  ]
 }
