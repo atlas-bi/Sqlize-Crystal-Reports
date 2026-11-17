@@ -1,3 +1,17 @@
 {
-  "enabled": false
+  "extends": ["config:recommended"],
+  "baseBranches": ["dev"],
+  "schedule": ["before 10pm on the first day of the month"],
+  "timezone": "America/Chicago",
+  "labels": ["maintenance", "renovate"],
+  "dependencyDashboard": false,
+  "packageRules": [
+    {
+      "description": "Single monthly PR for all updates",
+      "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest", "lockFileMaintenance"],
+      "groupName": "all dependencies",
+      "groupSlug": "all",
+      "automerge": false
+    }
+  ]
 }
