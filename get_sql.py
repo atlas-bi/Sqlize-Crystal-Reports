@@ -112,7 +112,7 @@ def printer(files, count):
     count_length = len(str(count))
 
     print(
-        f"  - {count}{(str_length-count_length) * ' '} of {files} processed..",
+        f"  - {count}{(str_length - count_length) * ' '} of {files} processed..",
         end="\r",
         flush=True,
     )

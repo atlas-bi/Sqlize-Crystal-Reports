@@ -132,10 +132,10 @@ Don't forget to add a user account that can delete and insert.
 (or, pass the variables as environment variables)
 
 ```py
-CRYSTALDATABASE = 'DRIVER={ODBC Driver 17 for SQL Server};SERVER=server_name;DATABASE=database_name;UID=username;PWD=password'
+CRYSTALDATABASE = "DRIVER={ODBC Driver 17 for SQL Server};SERVER=server_name;DATABASE=database_name;UID=username;PWD=password"
 
 # get report sql settings
-RPTSRC = '\\\\server\\Input'
+RPTSRC = "\\\\server\\Input"
 
 # get report data settings
 SAPAPIUSERNAME = "BOE_REPORT"

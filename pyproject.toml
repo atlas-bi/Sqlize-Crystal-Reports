@@ -1,5 +1,6 @@
 [tool.ruff]
 line-length = 99
+extend-exclude = ["readme.md"]
 
 [tool.ruff.lint]
 select = ["E", "F", "B", "A", "Q", "ARG", "ERA", "PL", "RUF", "I"]
